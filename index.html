@@ -12,7 +12,12 @@
 
     <div class="container">
 
+      <input type="text" v-model="totalItems" class="input">
+      <button type="button" name="button" @click="boxNumberGenerator()">START</button>
+
       <ol id="list">
+
+        <li v-for="value in values" class="box" :class="value.class">{{ value.value }}</li>
 
       </ol>
 

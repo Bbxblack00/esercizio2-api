@@ -4,6 +4,22 @@
 
 
 
+
+// chiedere il numero di box da generare all'utente attraverso un prompt
+// e generare anche una box rappresentante la somma dei valori ricevuti
+
+
+
+
+
+// Attraverso una chiamata ajax all'API di boolean
+// https://flynn.boolean.careers/exercises/api/array/music
+// avremo a disposizione una decina di dischi musicali.
+// Utilizzando vue, stampiamo a schermo una card per ogni album.
+// BONUS: Creare una select con tutti i generi dei dischi. In base a cosa scegliamo nella select, vedremo i corrispondenti cd.
+// BONUS 2: Ordinare i dischi per anno di uscita.
+
+
 function boxNumberGenerator() {
   // $.ajax({
   //     url: 'https://flynn.boolean.careers/exercises/api/random/int',
@@ -23,6 +39,7 @@ function boxNumberGenerator() {
   new Vue({
         el: '#app',
         data: {
+            totalItems: -1,
             values: []
         },
         mounted() {
@@ -31,7 +48,7 @@ function boxNumberGenerator() {
                     params: {
                         min: 1,
                         max: 100,
-                        items: 10
+                        items: this.totalItems
                     }
                 })
                 .then(data => {
@@ -72,8 +89,6 @@ function boxNumberGenerator() {
 
 function init() {
 
-  for (var i = 0; i < 10; i++) {
-    boxNumberGenerator();
   }
 
 }
