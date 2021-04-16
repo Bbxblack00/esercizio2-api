@@ -21,12 +21,25 @@ function boxNumberGenerator() {
 
   function stampBoxes(num) {
 
+    const target = $('#list');
+
+    if (num % 2 == 0) {
+
+      target.append('<li class="box bg-green">' + num + '</li>');
+
+    } else {
+
+      target.append('<li class="box bg-red">' + num + '</li>')
+
+    }
 
   }
 
 function init() {
 
-  boxNumberGenerator();
+  for (var i = 0; i < 10; i++) {
+    boxNumberGenerator();
+  }
 
 }
 document.addEventListener('DOMContentLoaded', init);
