@@ -15,7 +15,11 @@
 // Attraverso una chiamata ajax all'API di boolean
 // https://flynn.boolean.careers/exercises/api/array/music
 // avremo a disposizione una decina di dischi musicali.
+
+
 // Utilizzando vue, stampiamo a schermo una card per ogni album.
+
+
 // BONUS: Creare una select con tutti i generi dei dischi. In base a cosa scegliamo nella select, vedremo i corrispondenti cd.
 // BONUS 2: Ordinare i dischi per anno di uscita.
 
@@ -39,57 +43,36 @@ function boxNumberGenerator() {
   new Vue({
         el: '#app',
         data: {
-            totalItems: -1,
             values: []
         },
         mounted() {
-            axios.get('https://flynn.boolean.careers/exercises/api/array/integers',
-                {
-                    params: {
-                        min: 1,
-                        max: 100,
-                        items: this.totalItems
-                    }
-                })
-                .then(data => {
+            axios.get('https://flynn.boolean.careers/exercises/api/array/music')
+                .then(artist => {
                     // STRATEGIA 1
                     // this.values = data.data.response;
                     // STRATEGIA 2
-                    const values = data.data.response;
-                    for (let i=0;i<values.length;i++) {
-                        const value = values[i];
-                        const isPair = value % 2 == 0;
-                        this.values.push({
-                            value,
-                            class: isPair ? 'bg-green' : 'bg-red'
-                        });
-                    }
+
+                    const artists = artist.data.response;
+                    console.log(artists);
+                    // const values = artist;
+                    // for (let i=0;i<values.length;i++) {
+                    //     const value = values[i];
+                    //     const isPair = value % 2 == 0;
+                    //     this.values.push({
+                    //         value,
+                    //         class: isPair ? 'bg-green' : 'bg-red'
+                    //     });
+                    // }
                 })
                 .catch(() => console.log('error'));
         }
     });
 }
-  }
-
-  function stampBoxes(num) {
-
-    const target = $('#list');
-
-    if (num % 2 == 0) {
-
-      target.append('<li class="box bg-green">' + num + '</li>');
-
-    } else {
-
-      target.append('<li class="box bg-red">' + num + '</li>')
-
-    }
-
-  }
-
 function init() {
 
+  boxNumberGenerator();
+
   }
 
-}
+
 document.addEventListener('DOMContentLoaded', init);
